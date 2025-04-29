@@ -8,29 +8,36 @@
     <script src="script.js" defer=""></script>
 </head>
 <body>
-    <div class="Header">Welcome to Project Cool</div>
-    
+    <header class="Header">Welcome to Project Cool</header>
     <center>
-        <div class="Header-Sites-container">
-            <div class="Header-Sites">
-                <a href="index.html">Home</a> |
-                Coming soon
-            </div>
+        <nav class="Header-Sites-container">
+            <ul class="Header-Sites">
+                <a href="index.html">Home</a> | Coming More Soon
+            </ul
+        </nav>
     </center>
-    <div class="container">
-        <div class="card">
-            <div class="CardTitle">Update 8</div>
-            <div class="CardText">
-                1. Added liv camera
-            </div>
-            <div class="CardText">
-                3. Added some new features
-            </div>
-            <div class="CardText">
-                2. Added some bug Fixes
-            </div>
+    <main class="container">
+        <section class="card">
+            <h2 class="CardTitle">Update 8</h2>
+            <h2 class="Features">Features:</h2>
+            <p class="CardText">1. Added liv camera</p>
+            <p class="CardText">3. Added some new features</p>
+            <p class="CardText">2. Added some bug Fixes</p>
             <button class="cardDownload" onclick="window.location.href='https://lauritzgames.itch.io/project-cool'">Download</button>
-        </div>
+        </section>
+    </main>
+    <button class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑ Back to Top</button>
+
+    <footer class="Footer">
+    <p>&copy; 2023 Project Cool. All rights reserved.</p>
+    <div class="social-media">
+        <a href="https://twitter.com" target="_blank">Twitter</a> |
+        <a href="https://facebook.com" target="_blank">Facebook</a> |
+        <a href="https://instagram.com" target="_blank">Instagram</a>
     </div>
+    <section class="notifications">
+        <h2>Latest Notifications</h2>
+    </section>
+</footer>
 
 </body></html>

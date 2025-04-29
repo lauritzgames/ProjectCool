@@ -65,6 +65,7 @@ html {
     font-weight: bold;
     color: #ffffff;
     margin-bottom: 15px;
+    padding: 5px;
 }
 
 .card:hover {
@@ -101,8 +102,75 @@ html {
     font-weight: bold;
     color: #ffffff;
 }
-a {
+
+.Header-Sites a {
     color: #ffffff;
     text-decoration: none;
 }
 
+@media (max-width: 768px) {
+    .card {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .Header {
+        font-size: 18px;
+    }
+}
+
+.Footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    bottom: 0;
+}
+
+.Features {
+    text-align: left;
+    font-size: 125%;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #111111;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+}
+
+.back-to-top:hover {
+    background-color: #272727;
+}
+
+.social-media a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.social-media a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.card {
+    animation: fadeIn 1s ease-in-out;
+}
