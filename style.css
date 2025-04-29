@@ -1,0 +1,108 @@
+.card {
+    border: 2px solid #000000;
+    border-radius: 5px;
+    padding: 155px;
+    margin:55px;
+    background-color: #979797;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    border-color: rgb(187, 186, 186);
+    transform: scale(1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.Header {
+    background-color: #444141;
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.UnderHeader {
+    background-color: #444141;
+    padding: 5px;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.ButtonH2 {
+    background-color: #444141;
+    padding: 5px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+html {
+    background-color: rgb(87, 87, 87);
+}
+
+.CardTitle {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.CardText {
+    font-size: 1em;
+    max-width: 150px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.card:hover {
+    background-color: #666666;
+    transform: scale(1.2);
+    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease;
+}
+.cardDownload {
+    background-color: #444141;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 10px;
+}
+.cardDownload:hover {
+    background-color: #666666;
+    transition: background-color 0.3s ease;
+}
+
+.Header-Sites-container {
+    background-color: #444141;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.Header-Sites {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+}
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
