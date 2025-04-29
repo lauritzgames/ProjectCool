@@ -196,8 +196,6 @@ html {
 .btn_login{
     color: #ffffff;
     text-decoration: none;
-    margin: 0 auto;
-    font-size: 1.2em;
     position: relative;
 }
 .btn_login::before {
@@ -218,15 +216,11 @@ html {
 .btn_site{
     color: #ffffff;
     text-decoration: none;
-    margin: 0 auto;
-    font-size: 1.2em;
     position: relative;
 }
 .btn_site:hover {
     color: #dfdfdf;
     text-decoration: none;
-    margin: 0 auto
-    font-size 1.2em;
     position: relative;
 }
 
