@@ -42,10 +42,6 @@ h1{
 	color: black;
 	border: 1px solid black;
 	width: 50%
-	font-family: sans-selif;
-	font-size: 18px;
-	transition: 0.9s ease;
-	text-align: center;;
 }
 
 .submit.hover {
