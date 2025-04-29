@@ -177,22 +177,71 @@ html {
 .btn_login {
     background-color: #666464;
     color: white;
+    text-decoration: none;
     padding: 5px 10px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     font-size: 0.5em;
     font-weight: bold;
+    margin: 0 auto;
+    margin-right: 0%;
+    transition: all 0.2s ease-in;
 }
 .btn_login:hover {
     background-color: #8a8787;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.5em;
-    font-weight: bold;
+    color: #dfdfdf;
+}
+
+.btn_login{
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 auto
+    font-size 1.2em;
+    position: relative;
+}
+.btn_login::before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #ffffff;
+    bottom: 3px;
+    transition: width 0.3s ease-out;
+}
+
+.btn_login:hover::before {
+    width: 87.6%;
+    transition: width 0.3s ease-in;
+}
+
+.btn_site{
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 auto
+    font-size 1.2em;
+    position: relative;
+}
+.btn_site:hover {
+    color: #dfdfdf;
+    text-decoration: none;
+    margin: 0 auto
+    font-size 1.2em;
+    position: relative;
+}
+
+.btn_site::before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #ffffff;
+    bottom: 0px;
+    transition: width 0.3s ease-out;
+}
+.btn_site:hover::before {
+    width: 100%;
+    transition: width 0.3s ease-in;
 }
 
 nav {
@@ -209,7 +258,6 @@ nav h4 {
     color: #ffffff;
     display: flex;
     text-align: center;
-    margin-left: 35%;
 }
 
 .btn_home {
