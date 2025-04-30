@@ -46,10 +46,15 @@ if(count >= 1)
 document.addEventListener('DOMContentLoaded', () => {
    const updateForm = document.getElementById('update-form');
    const updatesList = document.getElementById('updates-list');
+   const API_URL = 'http://localhost:3000/api/updates'; // Replace with your server's URL
 
-   // Load saved updates from localStorage
-   const savedUpdates = JSON.parse(localStorage.getItem('updates')) || [];
-   savedUpdates.forEach(addUpdateToDOM);
+   // Load updates from the server
+   fetch(API_URL)
+       .then((response) => response.json())
+       .then((updates) => {
+           updates.forEach(addUpdateToDOM);
+       })
+       .catch((error) => console.error('Error fetching updates:', error));
 
    // Handle form submission
    updateForm.addEventListener('submit', (e) => {
@@ -59,16 +64,22 @@ document.addEventListener('DOMContentLoaded', () => {
        const content = document.getElementById('update-content').value;
 
        const newUpdate = { title, content };
-       savedUpdates.push(newUpdate);
 
-       // Save to localStorage
-       localStorage.setItem('updates', JSON.stringify(savedUpdates));
-
-       // Add to DOM
-       addUpdateToDOM(newUpdate);
-
-       // Clear form
-       updateForm.reset();
+       // Save the update to the server
+       fetch(API_URL, {
+           method: 'POST',
+           headers: {
+               'Content-Type': 'application/json',
+           },
+           body: JSON.stringify(newUpdate),
+       })
+           .then((response) => response.json())
+           .then((savedUpdate) => {
+               // Add the saved update to the DOM
+               addUpdateToDOM(savedUpdate);
+               updateForm.reset();
+           })
+           .catch((error) => console.error('Error saving update:', error));
    });
 
    // Function to add an update to the DOM
