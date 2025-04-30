@@ -24,6 +24,20 @@
     </center>
     <button class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑ Back to Top</button>
 
+    <main class="container">
+        <!-- Add a form for new updates -->
+        <section class="add-update">
+            <h2>Add New Update</h2>
+            <form id="update-form">
+                <input type="text" id="update-title" placeholder="Update Title" required />
+                <textarea id="update-content" placeholder="Update Content" required></textarea>
+                <button type="submit" class="btn_home">Add Update</button>
+            </form>
+        </section>
+    
+        <!-- Section to display dynamically added updates -->
+    </main>
+
     <footer class="Footer">
     <p>&copy; 2025 Project Cool. All rights reserved.</p>
     <div class="social-media">

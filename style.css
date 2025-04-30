@@ -256,7 +256,7 @@ nav h4 {
 
 .btn_home {
     background-color: #666464;
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 5px 10px;
     border: none;
     border-radius: 25px;
@@ -266,11 +266,64 @@ nav h4 {
 }
 .btn_home:hover {
     background-color: #8a8787;
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 5px 10px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
     font-size: 0.5em;
     font-weight: bold;
+}
+
+.add-update {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #828282;
+}
+
+.add-update h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.add-update form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-update input,
+.add-update textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#updates-list {
+    margin-top: 20px;
+}
+
+#updates-list .card {
+    border: 2px solid #000000;
+    border-radius: 5px;
+    padding: 155px;
+    margin:55px;
+    background-color: #979797;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    border-color: rgb(187, 186, 186);
+    transform: scale(1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#updates-list .card:hover {
+    background-color: #666666;
+    transform: scale(1.2);
+    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease;
 }
