@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
    const updatesList = document.getElementById('updates-list');
 
    // Load saved updates from localStorage
-   const savedUpdates = JSON.parse(localStorage.getItem('updates3')) || [];
+   const savedUpdates = JSON.parse(localStorage.getItem('updates')) || [];
    savedUpdates.forEach(addUpdateToDOM);
 
    // Handle form submission
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
        savedUpdates.push(newUpdate);
 
        // Save to localStorage
-       localStorage.setItem('updates3', JSON.stringify(savedUpdates));
+       localStorage.setItem('updates', JSON.stringify(savedUpdates));
 
        // Add to DOM
        addUpdateToDOM(newUpdate);
@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
        updateElement.innerHTML = `
            <h2 class="CardTitle">${update.title}</h2>
            <p class="CardText">${update.content}</p>
-           <button class="cardDownload" onclick="window.location.href='https://lauritzgames.itch.io/project-cool'">Download</button>
        `;
        updatesList.appendChild(updateElement);
    }
