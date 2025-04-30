@@ -46,7 +46,7 @@ if(count >= 1)
 document.addEventListener('DOMContentLoaded', () => {
    const updateForm = document.getElementById('update-form');
    const updatesList = document.getElementById('updates-list');
-   const API_URL = 'http://localhost:30001/api/updates'; // Replace with your server's URL
+   const API_URL = 'http://localhost:3000/api/updates'; // Replace with your server's URL
 
    // Load updates from the server
    fetch(API_URL)
