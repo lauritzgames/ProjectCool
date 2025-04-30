@@ -8,12 +8,12 @@ app.use(express.json());
 let updates = []; // Temporary in-memory storage
 
 // Endpoint to get all updates
-app.get('/api/updates', (req, res) => {
+app.get('/api/updates1', (req, res) => {
     res.json(updates);
 });
 
 // Endpoint to add a new update
-app.post('/api/updates', (req, res) => {
+app.post('/api/updates1', (req, res) => {
     const newUpdate = req.body;
     updates.push(newUpdate);
     res.status(201).json(newUpdate);
