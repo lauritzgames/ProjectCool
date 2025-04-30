@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
        updateElement.innerHTML = `
            <h2 class="CardTitle">${update.title}</h2>
            <p class="CardText">${update.content}</p>
+           <button class="cardDownload" onclick="window.location.href='https://lauritzgames.itch.io/project-cool'">Download</button>
        `;
        updatesList.appendChild(updateElement);
    }
