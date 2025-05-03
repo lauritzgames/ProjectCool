@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Detail</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.jpg">
+  <link rel="apple-touch-icon" href="logo.jpg">
+</head>
+<body>
+
+  <div id="post-detail-container" class="post-detail-container">
+    <h1 id="post-title"></h1>
+    <small id="post-meta"></small>
+    <div id="post-content"></div>
+    <div class="views">
+      <p>👁️ <span id="view-count">0</span> views</p>
+    </div>
+  </div>
+
+  <button id="back-button" onclick="window.history.back()">Back to Blog</button>
+
+  <script>
+    // Fetch the post ID from the URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const postId = params.get("id");
+
+    async function fetchPost() {
+      try {
+        const response = await fetch('https://lauritzgames.github.io/api/posts.json?v=' + Date.now());
+        const posts = await response.json();
+        const post = posts.find(p => p.id == postId);
+
+        // Display the post details
+        if (post) {
+          document.getElementById("post-title").innerText = post.title;
+          document.getElementById("post-meta").innerText = `By ${post.author} on ${post.date}`;
+          document.getElementById("post-content").innerHTML = post.content;
+          
+          // Display view count (You can use your views counter logic here)
+          const viewCount = await getViewCount(post.id);
+          document.getElementById("view-count").innerText = viewCount;
+          
+          // Increment view count
+          incrementViewCount(post.id);
+        } else {
+          document.getElementById("post-detail-container").innerHTML = '<p>Post not found.</p>';
+        }
+      } catch (error) {
+        console.error('Error fetching post:', error);
+        document.getElementById("post-detail-container").innerHTML = '<p>Failed to load post.</p>';
+      }
+    }
+
+    // Function to get current view count for the post
+    async function getViewCount(postId) {
+      const url = 'https://api.jsonbin.io/v3/b/6815e1e78a456b796696b32b'; // replace with your bin ID
+      const key = '$2a$10$EsCCuXfyAxRHJCUcwZDV1OsHaovRf3c.VzxRNRVuYc1BE0EzzmFh.'; // replace with your secret key
+
+      try {
+        const res = await fetch(url, { headers: { 'X-Master-Key': key } });
+        const data = await res.json();
+        return data.record[postId] || 0;
+      } catch (error) {
+        console.error('Error fetching view count:', error);
+        return 0;
+      }
+    }
+
+    // Function to increment view count
+    async function incrementViewCount(postId) {
+      const url = 'https://api.jsonbin.io/v3/b/6815e1e78a456b796696b32b'; // replace with your bin ID
+      const key = '$2a$10$EsCCuXfyAxRHJCUcwZDV1OsHaovRf3c.VzxRNRVuYc1BE0EzzmFh.'; // replace with your secret key
+
+      try {
+        // Fetch current views
+        const res = await fetch(url, { headers: { 'X-Master-Key': key } });
+        const data = await res.json();
+        const views = data.record;
+
+        // Increment the view count
+        views[postId] = (views[postId] || 0) + 1;
+
+        // Push the updated data back to JSONBin
+        await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Master-Key': key
+          },
+          body: JSON.stringify(views)
+        });
+      } catch (error) {
+        console.error('Error updating view count:', error);
+      }
+    }
+
+    // Call the fetchPost function when the page loads
+    fetchPost();
+  </script>
+
+</body>
+</html>

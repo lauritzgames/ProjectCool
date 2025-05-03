@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Auto-Updating Blog</title>
+  <title>Project Cool</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="logo.jpg">
+  <link rel="apple-touch-icon" href="logo.jpg">
 </head>
 <body>
   <header>
@@ -38,7 +40,7 @@
       const response = await fetch('https://lauritzgames.github.io/api/posts.json?v=' + Date.now());
       const posts = await response.json();
       allPosts = posts;
-
+      allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
       // Determine which posts to load based on current count
       const postsToDisplay = posts.slice(0, currentPostCount);
       const postsContainer = document.getElementById('blog-container');
@@ -47,7 +49,11 @@
       // Loop through each post and render it with comments
       for (let index = 0; index < postsToDisplay.length; index++) {
         const post = postsToDisplay[index];
-        const newBadge = post.isNew ? '<span class="new-badge">New</span>' : '';
+        const postDate = new Date(post.date);
+        const now = new Date();
+        const isNew = (now - postDate) / (1000 * 60 * 60 * 24) <= 2; // 3 days
+
+        const newBadge = isNew ? '<span class="new-badge">NEW</span>' : '';
 
         const postDiv = document.createElement('div');
         postDiv.classList.add('post');
@@ -61,6 +67,7 @@
             <button onclick="submitComment(${index})">Post Comment</button>
             <ul id="comments-${index}" class="comment-list"></ul>
           </div>
+          <a href="post.html?id=${post.id}" class="read-more">Read More</a>
         `;
 
         postsContainer.appendChild(postDiv);
@@ -115,7 +122,7 @@
         loadComments(index);
       });
     }
-    const BIN_ID = '6815e1e78a456b796696b32b';
+    const BIN_ID = '6815eae78960c979a5927b4a';
     const API_KEY = '$2a$10$EsCCuXfyAxRHJCUcwZDV1OsHaovRf3c.VzxRNRVuYc1BE0EzzmFh.';
     const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
@@ -211,6 +218,8 @@ function filterPosts(category) {
     currentPostCount += 5; // Increase the number of posts to load
     loadPosts(); // Call the function to load more posts and comments
   });
+  
+
   </script>
 </body>
 </html>
