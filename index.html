@@ -51,6 +51,7 @@
 
         const postDiv = document.createElement('div');
         postDiv.classList.add('post');
+        postDiv.dataset.category = post.category;
         postDiv.innerHTML = `
           <div class="title">${post.title} ${newBadge}</div>
           <div class="meta">By ${post.author} on ${post.date}</div>
@@ -185,26 +186,27 @@
     setInterval(loadPosts, 60000);
 
     document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
 
-        const selectedCategory = tab.dataset.category;
-        filterPosts(selectedCategory);
-      });
-    });
+    const selectedCategory = tab.dataset.category;
+    filterPosts(selectedCategory);
+  });
+});
 
-    function filterPosts(category) {
-      const posts = document.querySelectorAll('.post');
-      posts.forEach(post => {
-        const postCategory = post.dataset.category;
-        if (category === "All" || postCategory === category) {
-          post.style.display = "block";
-        } else {
-          post.style.display = "none";
-        }
-      });
+function filterPosts(category) {
+  const posts = document.querySelectorAll('.post');
+  posts.forEach(post => {
+    const postCategory = post.dataset.category;
+    if (category === "All" || postCategory === category) {
+      post.style.display = "block";
+    } else {
+      post.style.display = "none";
     }
+  });
+}
+
     document.getElementById('load-more-btn').addEventListener('click', () => {
     currentPostCount += 5; // Increase the number of posts to load
     loadPosts(); // Call the function to load more posts and comments
