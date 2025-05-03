@@ -7,7 +7,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-const { My_Password } = require('./publish.yml');
+const { password } = require('./config.json');
 
 var count = 2;
 
@@ -17,7 +17,7 @@ function validate ()
    var password = document.login.password.value;
    var valid = false;
    var usernameArray = ["admin"]
-   var passwordArray = [My_Password]
+   var passwordArray = [password]
    for (var i = 0; i < usernameArray.length; i++)
 
 if (user == usernameArray[i])
