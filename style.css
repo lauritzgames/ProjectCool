@@ -1,329 +1,204 @@
-.card {
-    border: 2px solid #000000;
-    border-radius: 5px;
-    padding: 155px;
-    margin:55px;
-    background-color: #979797;
-    text-align: center;
-    color: #ffffff;
-    font-weight: bold;
-    border-color: rgb(187, 186, 186);
-    transform: scale(1);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000000;
+  color: #f0f0f0;
+  line-height: 1.6;
 }
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 10px;
-    box-sizing: border-box;
-}
-.Header {
-    background-color: #444141;
+
+header {
+    background-color: #1e1e1e;
     padding: 20px;
     text-align: center;
-    font-size: 2em;
+    font-size: 2rem;
     font-weight: bold;
-    color: #ffffff;
-}
-
-.UnderHeader {
-    background-color: #444141;
-    padding: 5px;
-    text-align: center;
-    text-decoration: underline;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.ButtonH2 {
-    background-color: #444141;
-    padding: 5px;
-    text-align: center;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-html {
-    background-color: rgb(87, 87, 87);
-}
-
-.CardTitle {
-    font-size: 2em;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.CardText {
-    font-size: 1em;
-    max-width: 150px;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 15px;
-    padding: 5px;
-}
-
-.card:hover {
-    background-color: #666666;
-    transform: scale(1.2);
-    transition: background-color 0.3s ease;
-    transition: transform 0.3s ease;
-}
-.cardDownload {
-    background-color: #444141;
-    padding: 10px;
-    text-align: center;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #ffffff;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 2px solid red; /* 🔴 Add red outline */
     border-radius: 10px;
-}
-.cardDownload:hover {
-    background-color: #666666;
-    transition: background-color 0.3s ease;
+    margin: 20px;
+    box-shadow: 0 0 10px red, 0 0 20px red inset; /* 🔴 Add red glow effect */
+  }
+  
+
+#blog-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.Header-Sites-container {
-    background-color: #444141;
+.post {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  border: 2px solid red; /* 🔴 Add red outline */
+  border-radius: 10px;
+  box-shadow: 0 0 10px red, 0 0 20px red inset; /* 🔴 Add red glow effect */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+}
+
+.post h2 {
+  margin-top: 0;
+  color: #ffffff;
+}
+
+.post p {
+  margin: 10px 0;
+}
+
+.post small {
+  color: #bbbbbb;
+  font-size: 0.85rem;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  background: #2a2a2a;
+  color: #f0f0f0;
+  border: 1px solid #333;
+  border-radius: 10px;
+  margin-top: 10px;
+  resize: vertical;
+}
+
+button {
+  background: #000000;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  border: 2px solid red; /* 🔴 Add red outline */
+  border-radius: 10px;
+  box-shadow: 0 0 10px red, 0 0 20px red inset; /* 🔴 Add red glow effect */
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #5393ff;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+    background-color: #1e1e1e;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    color: #f0f0f0;
+    list-style: none;
+    box-shadow: 0 0 6px rgba(255, 60, 60, 0.6);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  li:hover {
+    box-shadow: 0 0 12px rgba(255, 60, 60, 0.9);
+  }
+
+#controls {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  #search {
+    width: 300px;
+    padding: 10px 14px;
+    border: 2px solid #444;
+    border-radius: 12px;
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    font-size: 1rem;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #search:focus {
+    outline: none;
+    border-color: #ff3c3c;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    border: 2px solid red; /* 🔴 Add red outline */
+    border-radius: 10px;
+    box-shadow: 0 0 10px red, 0 0 20px red inset; /* 🔴 Add red glow effect */
+  }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #1e1e1e;
+  color: #fff;
+  font-size: 0.9rem;
+  border-top: 2px solid red; /* 🔴 Add red outline */
+  border-radius: 10px;
+  box-shadow: 0 0 10px red, 0 0 20px red inset; /* 🔴 Add red glow effect */
+}
+  
+.new-badge {
+    background: #ff3c3c;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 5px;
+    margin-left: 8px;
+    vertical-align: middle;
+    box-shadow: 0 0 8px rgba(255, 60, 60, 0.8);
+    animation: popFade 1s ease-in-out;
+  }
+  
+  @keyframes popFade {
+    0% {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  #category-tabs {
     display: flex;
     justify-content: center;
     gap: 10px;
-    padding: 10px;
-}
-
-.Header-Sites {
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.Header-Sites a {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-@media (max-width: 768px) {
-    .card {
-        padding: 10px;
-        margin: 10px;
-    }
-
-    .Header {
-        font-size: 18px;
-    }
-}
-
-.Footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-    bottom: 0;
-}
-
-.Features {
-    text-align: left;
-    font-size: 125%;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #111111;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 50%;
+    margin: 30px auto;
+    flex-wrap: wrap;
+  }
+  
+  .tab {
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 8px 14px;
+    border: 2px solid #444;
+    border-radius: 8px;
     cursor: pointer;
-    display: none;
-}
-
-.back-to-top:hover {
-    background-color: #272727;
-}
-
-.social-media a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-.social-media a:hover {
-    text-decoration: underline;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.card {
-    animation: fadeIn 1s ease-in-out;
-}
-.btn_login {
-    background-color: #666464;
-    color: white;
-    text-decoration: none;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.5em;
-    font-weight: bold;
-    margin: 0 auto;
-    margin-right: 0%;
-    transition: all 0.2s ease-in;
-}
-.btn_login:hover {
-    background-color: #8a8787;
-    color: #f0f0f0;
-}
-
-.btn_login{
-    color: #ffffff;
-    text-decoration: none;
-    position: relative;
-}
-.btn_login::before {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    background-color: #ffffff;
-    bottom: 3px;
-    transition: width 0.3s ease-out;
-}
-
-.btn_login:hover::before {
-    width: 87.6%;
-    transition: width 0.3s ease-in;
-}
-
-.btn_site{
-    color: #ffffff;
-    text-decoration: none;
-    position: relative;
-}
-.btn_site:hover {
-    color: #dfdfdf;
-    text-decoration: none;
-    position: relative;
-}
-
-.btn_site::before {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    background-color: #ffffff;
-    bottom: 0px;
-    transition: width 0.3s ease-out;
-}
-.btn_site:hover::before {
-    width: 100%;
-    transition: width 0.3s ease-in;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-nav h4 {
-    margin: 0 auto;
-    padding: 0;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #ffffff;
-    display: flex;
-    text-align: center;
-}
-
-.btn_home {
-    background-color: #666464;
-    color: rgb(0, 0, 0);
-    padding: 5px 10px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.5em;
-    font-weight: bold;
-}
-.btn_home:hover {
-    background-color: #8a8787;
-    color: rgb(0, 0, 0);
-    padding: 5px 10px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.5em;
-    font-weight: bold;
-}
-
-.add-update {
-    margin: 20px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #828282;
-}
-
-.add-update h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: #000;
-}
-
-.add-update form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.add-update input,
-.add-update textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#updates-list {
-    margin-top: 20px;
-}
-
-#updates-list .card {
-    border: 2px solid #000000;
-    border-radius: 5px;
-    padding: 155px;
-    margin:55px;
-    background-color: #979797;
-    text-align: center;
-    color: #ffffff;
-    font-weight: bold;
-    border-color: rgb(187, 186, 186);
-    transform: scale(1);
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-#updates-list .card:hover {
-    background-color: #666666;
-    transform: scale(1.2);
-    transition: background-color 0.3s ease;
-    transition: transform 0.3s ease;
-}
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 0 6px rgba(255, 60, 60, 0.4);
+  }
+  
+  .tab:hover {
+    background-color: #2a2a2a;
+    box-shadow: 0 0 10px rgba(255, 60, 60, 0.8);
+  }
+  
+  .tab.active {
+    border-color: #ff3c3c;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    border: 2px solid red; /* 🔴 Add red outline */
+    border-radius: 10px;
+    box-shadow: 0 0 10px red, 0 0 20px red inset; /* 🔴 Add red glow effect */
+  }
+  

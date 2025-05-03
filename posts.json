@@ -1,0 +1,21 @@
+[
+    {
+      "title": "First Post",
+      "date": "2025-05-01",
+      "content": "This is the first blog post.",
+      "author": "Alice"
+    },
+    {
+      "title": "Second Post",
+      "date": "2025-05-03",
+      "content": "This is the second blog post.",
+      "author": "Bob"
+    },
+    {
+      "title": "third Post",
+      "date": "2025-05-02",
+      "content": "This is the third blog post.",
+      "author": "Bo"
+    }
+  ]
+  

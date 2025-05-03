@@ -1,55 +1,214 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Cool</title>
-    <link rel="icon" href="logo.jpg" type="image/jpg">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer=""></script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auto-Updating Blog</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header class="Header">
-        <nav>
-            <a type="button" class="btn_login" href="login.html">
-                Login To Dashboard
-            </a>
-        </nav>
-        <nav>
-            <h4>Welcome to Project Cool</h4>
-        </nav>
-    </header>
-    <center>
-        <nav class="Header-Sites-container">
-            <ul class="Header-Sites">
-                <a href="index.html" class="btn_site">Home</a> | Coming More Soon!
-            </ul
-        </nav>
-    </center>
-    <main class="container">
-        <section class="card">
-            <h2 class="CardTitle">Update 8</h2>
-            <h2 class="Features">Features:</h2>
-            <p class="CardText">1. Added liv camera</p>
-            <p class="CardText">3. Added some new features</p>
-            <p class="CardText">2. Added some bug Fixes</p>
-            <button class="cardDownload" onclick="window.location.href='https://lauritzgames.itch.io/project-cool'">Download</button>
-        </section>
-        <section id="updates-list">
-            <h2>Previous Updates</h2>
-        </section>
-    </main>
-    <button class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑ Back to Top</button>
+  <header>
+    My Auto-Updating Blog
+    <div id="category-tabs">
+    <button class="tab active" data-category="All">All</button>
+    <button class="tab" data-category="News">News</button>
+    <button class="tab" data-category="Tutorial">Tutorial</button>
+    <button class="tab" data-category="Updates">Updates</button>
+  </div>
+  </header>
 
-    <footer class="Footer">
-    <p>&copy; 2025 Project Cool. All rights reserved.</p>
-    <div class="social-media">
-        <a href="https://twitter.com" target="_blank">Twitter</a> |
-        <a href="https://facebook.com" target="_blank">Facebook</a> |
-        <a href="https://instagram.com" target="_blank">Instagram</a>
-    </div>
-    <section class="notifications">
-        <h2>Latest Notifications</h2>
-    </section>
-</footer>
+  <div id="controls">
+    <input type="text" id="search" placeholder="Search posts..." />
+  </div>
 
-</body></html>
+  <div id="blog-container">Loading posts...</div>
+
+  <button id="load-more-btn">Load More</button>
+
+  <footer>&copy; 2025 My Blog. Updates every 60 seconds.</footer>
+
+  <script>
+    let allPosts = [];
+  let currentPostCount = 5; // Number of posts to load initially
+
+  // Function to load posts and comments
+  async function loadPosts() {
+    try {
+      // Fetch posts from your JSON
+      const response = await fetch('https://lauritzgames.github.io/api/posts.json?v=' + Date.now());
+      const posts = await response.json();
+      allPosts = posts;
+
+      // Determine which posts to load based on current count
+      const postsToDisplay = posts.slice(0, currentPostCount);
+      const postsContainer = document.getElementById('blog-container');
+      postsContainer.innerHTML = ''; // Clear previous posts
+
+      // Loop through each post and render it with comments
+      for (let index = 0; index < postsToDisplay.length; index++) {
+        const post = postsToDisplay[index];
+        const newBadge = post.isNew ? '<span class="new-badge">New</span>' : '';
+
+        const postDiv = document.createElement('div');
+        postDiv.classList.add('post');
+        postDiv.innerHTML = `
+          <div class="title">${post.title} ${newBadge}</div>
+          <div class="meta">By ${post.author} on ${post.date}</div>
+          <div class="content">${post.content}</div>
+          <div class="comment-section">
+            <textarea placeholder="Write a comment..." data-index="${index}"></textarea>
+            <button onclick="submitComment(${index})">Post Comment</button>
+            <ul id="comments-${index}" class="comment-list"></ul>
+          </div>
+        `;
+
+        postsContainer.appendChild(postDiv);
+        // Fetch and render comments asynchronously
+        loadComments(index);
+
+        // Append post to the container
+      }
+
+      // Show or hide the Load More button depending on remaining posts
+      if (currentPostCount < allPosts.length) {
+        document.getElementById('load-more-btn').style.display = 'block';
+      } else {
+        document.getElementById('load-more-btn').style.display = 'none';
+      }
+    } catch (error) {
+      console.error('Error loading posts:', error);
+      document.getElementById('blog-container').innerText = 'Failed to load posts.';
+    }
+  }
+
+    function isNewPost(postDateStr) {
+      const postDate = new Date(postDateStr);
+      const now = new Date();
+      const diffHours = (now - postDate) / (1000 * 60 * 60);
+      return diffHours < 24;
+    }
+
+    function renderPosts(posts) {
+      const container = document.getElementById('blog-container');
+      container.innerHTML = '';
+
+      posts.forEach((post, index) => {
+        const postDiv = document.createElement('div');
+        postDiv.dataset.category = post.category;
+
+        postDiv.className = 'post';
+        const newBadge = isNewPost(post.date) ? `<span class="new-badge">NEW</span>` : '';
+
+        postDiv.innerHTML = `
+          <div class="title">${post.title} ${newBadge}</div>
+          <div class="meta">By ${post.author} on ${post.date}</div>
+          <div class="content">${post.content}</div>
+          <div class="comment-section">
+            <textarea placeholder="Write a comment..." data-index="${index}"></textarea>
+            <button onclick="submitComment(${index})">Post Comment</button>
+            <ul id="comments-${index}" class="comment-list"></ul>
+          </div>
+        `;
+        container.appendChild(postDiv);
+
+        loadComments(index);
+      });
+    }
+    const BIN_ID = '6815c9348960c979a59266cf';
+    const API_KEY = '$2a$10$EsCCuXfyAxRHJCUcwZDV1OsHaovRf3c.VzxRNRVuYc1BE0EzzmFh.';
+    const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+    // Fetch and show comments
+    async function loadComments(index) {
+      try {
+        const res = await fetch(API_URL, {
+          headers: {
+            'X-Master-Key': API_KEY
+          }
+        });
+        const data = await res.json();
+        const comments = data.record || [];
+
+        const postComments = comments.filter(c => c.postId === index);
+        const commentList = document.getElementById(`comments-${index}`);
+        commentList.innerHTML = postComments.map(c => `<li class="comment">${c.text}</li>`).join('');
+      } catch (err) {
+        console.error('Error loading comments:', err);
+      }
+    }
+
+    // Submit new comment
+    async function submitComment(index) {
+      const textarea = document.querySelector(`textarea[data-index="${index}"]`);
+      const text = textarea.value.trim();
+      if (!text) return;
+
+      // Fetch current data
+      const res = await fetch(API_URL, {
+        headers: { 'X-Master-Key': API_KEY }
+      });
+      const data = await res.json();
+      const comments = data.record || [];
+
+      comments.push({
+        postId: index,
+        text: text,
+        timestamp: new Date().toISOString()
+      });
+
+      // Save updated comments
+      await fetch(API_URL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': API_KEY
+        },
+        body: JSON.stringify(comments)
+      });
+
+      textarea.value = '';
+      loadComments(index);
+    }
+
+
+
+    document.getElementById('search').addEventListener('input', e => {
+      const query = e.target.value.toLowerCase();
+      const filtered = allPosts.filter(post =>
+        post.title.toLowerCase().includes(query) ||
+        post.content.toLowerCase().includes(query)
+      );
+      renderPosts(filtered);
+    });
+
+    loadPosts();
+    setInterval(loadPosts, 60000);
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const selectedCategory = tab.dataset.category;
+        filterPosts(selectedCategory);
+      });
+    });
+
+    function filterPosts(category) {
+      const posts = document.querySelectorAll('.post');
+      posts.forEach(post => {
+        const postCategory = post.dataset.category;
+        if (category === "All" || postCategory === category) {
+          post.style.display = "block";
+        } else {
+          post.style.display = "none";
+        }
+      });
+    }
+    document.getElementById('load-more-btn').addEventListener('click', () => {
+    currentPostCount += 5; // Increase the number of posts to load
+    loadPosts(); // Call the function to load more posts and comments
+  });
+  </script>
+</body>
+</html>
