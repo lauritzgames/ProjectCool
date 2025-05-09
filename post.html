@@ -29,7 +29,7 @@
 
     async function fetchPost() {
       try {
-        const response = await fetch('https://lauritzgames.github.io/api/posts.json?v=' + Date.now());
+        const response = await fetch("\x68\x74\x74\x70\x73\x3a\x2f\x2f\x6c\x61\x75\x72\x69\x74\x7a\x67\x61\x6d\x65\x73\x2e\x67\x69\x74\x68\x75\x62\x2e\x69\x6f\x2f\x61\x70\x69\x2f\x70\x6f\x73\x74\x73\x2e\x6a\x73\x6f\x6e\x3f\x76\x3d" + Date.now());
         const posts = await response.json();
         const post = posts.find(p => p.id == postId);
 
